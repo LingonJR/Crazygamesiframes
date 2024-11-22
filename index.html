@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Subpages List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin: 10px 0;
+    }
+    a {
+      text-decoration: none;
+      color: #007bff;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Subpages</h1>
+  <ul id="subpages-list"></ul>
+
+  <script>
+    // Define the subpage names or pattern
+    const subpages = [
+      { name: "Subpage 1", url: "/subpage1.html" },
+      { name: "Subpage 2", url: "/subpage2.html" },
+      { name: "Subpage 3", url: "/subpage3.html" }
+    ];
+
+    const listElement = document.getElementById('subpages-list');
+
+    subpages.forEach(subpage => {
+      const listItem = document.createElement('li');
+      const link = document.createElement('a');
+      link.href = subpage.url;
+      link.textContent = subpage.name;
+      listItem.appendChild(link);
+      listElement.appendChild(listItem);
+    });
+  </script>
+</body>
+</html>
