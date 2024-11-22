@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dynamic Subpages List</title>
+  <title>Subpages</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -28,26 +28,19 @@
 </head>
 <body>
   <h1>Subpages</h1>
-  <ul id="subpages-list"></ul>
+  <ul>
+    <?php
+      // Scan the directory for files with .html extensions
+      $files = glob("*.html");
 
-  <script>
-    // Define the subpage names or pattern
-    const subpages = [
-      { name: "Subpage 1", url: "/subpage1.html" },
-      { name: "Subpage 2", url: "/subpage2.html" },
-      { name: "Subpage 3", url: "/subpage3.html" }
-    ];
-
-    const listElement = document.getElementById('subpages-list');
-
-    subpages.forEach(subpage => {
-      const listItem = document.createElement('li');
-      const link = document.createElement('a');
-      link.href = subpage.url;
-      link.textContent = subpage.name;
-      listItem.appendChild(link);
-      listElement.appendChild(listItem);
-    });
-  </script>
+      // Loop through files and list them as links
+      foreach ($files as $file) {
+        if ($file !== "index.html") { // Exclude the current main file
+          $name = ucfirst(str_replace(".html", "", $file)); // Format the name
+          echo "<li><a href='$file'>$name</a></li>";
+        }
+      }
+    ?>
+  </ul>
 </body>
 </html>
